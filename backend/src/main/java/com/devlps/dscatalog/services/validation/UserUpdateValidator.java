@@ -38,8 +38,6 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
 		List<FieldMessage> list = new ArrayList<>();
 
 		User user = repository.findByEmail(dto.getEmail());
-		
-		System.out.println("############# user.getId() "+ user.getId()+" ######################## userId "+ userId);
 
 		if (user != null && userId != user.getId()) {
 
