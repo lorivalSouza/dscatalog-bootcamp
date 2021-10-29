@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 
 import com.devlps.dscatalog.dto.ProductDTO;
 import com.devlps.dscatalog.repositories.ProductRepository;
@@ -69,7 +68,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(0, 10);
 		
-		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
+		Page<ProductDTO> result =  service.findAllPaged("", 0L, pageable);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(10, result.getSize());
@@ -84,7 +83,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(50, 10);
 		
-		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
+		Page<ProductDTO> result =  service.findAllPaged("", 0L, pageable);
 		
 		Assertions.assertTrue(result.isEmpty());
 		
@@ -96,7 +95,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("name"));
 		
-		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
+		Page<ProductDTO> result =  service.findAllPaged("", 0L, pageable);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals("Macbook Pro", result.getContent().get(0).getName());
