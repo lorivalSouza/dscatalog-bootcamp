@@ -69,7 +69,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(0, 10);
 		
-		Page<ProductDTO> result =  service.findAllPaged(pageable);
+		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(10, result.getSize());
@@ -84,7 +84,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(50, 10);
 		
-		Page<ProductDTO> result =  service.findAllPaged(pageable);
+		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
 		
 		Assertions.assertTrue(result.isEmpty());
 		
@@ -96,7 +96,7 @@ public class ProductServiceIT {
 		
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("name"));
 		
-		Page<ProductDTO> result =  service.findAllPaged(pageable);
+		Page<ProductDTO> result =  service.findAllPaged("Gamer", 1L, pageable);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals("Macbook Pro", result.getContent().get(0).getName());
