@@ -1,0 +1,1 @@
+export const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://192.168.0.184:8080' ?? 'http://localhost:8080';
