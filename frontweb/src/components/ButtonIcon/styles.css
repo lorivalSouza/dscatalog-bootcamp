@@ -20,6 +20,7 @@
   height: 50px;
   background: #33569b;
   border-radius: 0px 10px 10px 0px;
+  color: #FFF;
 }
 
 @media (min-width: 576px) {
