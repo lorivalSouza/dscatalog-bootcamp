@@ -7,10 +7,10 @@ const ProductDetailsLoader = () => (
 )
 
 ProductDetailsLoader.metadata = {
-  name: 'RJavlonbek',
-  github: 'RJavlonbek',
-  description: 'Blog item',
-  filename: 'BlogItem',
+  name: 'Lorival',
+  github: 'lorivalSouza',
+  description: 'Based on Blog item by RJavlonbek',
+  filename: 'ProductDetailsLoader',
 }
 
 export default ProductDetailsLoader
