@@ -1,10 +1,21 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 
+type LoginResponse = {
+access_token: string;
+token_type: string;
+expires_in: string;
+scope: string;
+userFirstName: string;
+userId: string;
+}
+
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ??
   'http://192.168.0.184:8080' ??
   'http://localhost:8080';
+
+  const tokenKey = 'authData';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dscatalog';
 
@@ -34,3 +45,14 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers,
   });
 };
+
+
+export const saveAuthData = (loginResponse: LoginResponse) => {
+    localStorage.setItem(tokenKey, JSON.stringify(loginResponse));
+}
+
+export const getAuthData = () => {
+    const str = localStorage.getItem(tokenKey) ?? "{}";
+    return JSON.parse(str) as LoginResponse;
+    
+}
