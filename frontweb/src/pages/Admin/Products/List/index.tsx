@@ -1,5 +1,6 @@
-import ProductCrudCard from 'components/ProductCrudCard';
+
 import { Link } from 'react-router-dom';
+import ProductCrudCard from '../ProductCrudCard';
 
 import './styles.css';
 
@@ -13,7 +14,7 @@ const List = () => {
     imgURL:
       'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg',
     date: '2020-07-13T20:50:07.123450Z',
-    categories: [{ id: 2, name: 'Eletrônicos' }],
+    categories: [{ id: 2, name: 'Eletrônicos' }, { id: 3, name: 'Computadores' }],
   };
 
   return (
