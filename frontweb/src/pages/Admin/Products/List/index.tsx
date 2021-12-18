@@ -14,7 +14,7 @@ const List = () => {
     imgURL:
       'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg',
     date: '2020-07-13T20:50:07.123450Z',
-    categories: [{ id: 2, name: 'Eletrônicos' }, { id: 3, name: 'Computadores' }],
+    categories: [{ id: 2, name: 'Eletrônicos' }, { id: 3, name: 'Computadores' }, { id: 4, name: 'Digital' }],
   };
 
   return (
