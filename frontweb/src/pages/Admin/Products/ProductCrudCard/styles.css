@@ -57,6 +57,7 @@
 
   .product-crud-card-buttons-container {
     flex-direction: column-reverse;
+    width: 200px;
     justify-content: center;
   }
 
