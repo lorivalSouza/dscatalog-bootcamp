@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Category } from 'types/category';
@@ -13,7 +13,6 @@ type urlParams = {
 };
 
 const Form = () => {
-
   const { productId } = useParams<urlParams>();
 
   const isEditing = productId !== 'create';
@@ -26,27 +25,25 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
+    control,
   } = useForm<Product>();
 
   useEffect(() => {
-    requestBackend({url:'/categories'})
-    .then(response => {
-      setSelectCategories(response.data.content)
-    })
+    requestBackend({ url: '/categories' }).then((response) => {
+      setSelectCategories(response.data.content);
+    });
   }, []);
 
   useEffect(() => {
-    if(isEditing){
-      requestBackend({url:`/products/${productId}`})
-      .then((response) => {
+    if (isEditing) {
+      requestBackend({ url: `/products/${productId}` }).then((response) => {
         const product = response.data as Product;
         setValue('name', product.name);
         setValue('price', product.price);
         setValue('description', product.description);
         setValue('imgURL', product.imgURL);
-        setValue('categories', product.categories);      
-
+        setValue('categories', product.categories);
       });
     }
   }, [isEditing, productId, setValue]);
@@ -54,10 +51,10 @@ const Form = () => {
   const onSubmit = (formData: Product) => {
     const data = {
       ...formData,
-      imgURL: isEditing ? formData.imgURL :
-        'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg',
-      categories: isEditing ? formData.categories : 
-      [{ id: 1, name: '' }],
+      imgURL: isEditing
+        ? formData.imgURL
+        : 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg',
+      categories: isEditing ? formData.categories : [{ id: 1, name: '' }],
     };
 
     const config: AxiosRequestConfig = {
@@ -102,19 +99,31 @@ const Form = () => {
                 </div>
               </div>
 
-
-
               <div className="product-crud-margin-bottom-30">
-                <Select
-                options={selectCategories}
-                classNamePrefix="product-crud-select"
-                isMulti
-                getOptionLabel={(category: Category) => category.name}
-                getOptionValue={(category: Category) => String(category.id)}
-                ></Select>
+                <Controller
+                  name="categories"
+                  rules={{ required: true }}
+                  control={control}
+                  render={({ field }) => (
+                    <Select {...field}
+                      options={selectCategories}
+                      classNamePrefix="product-crud-select"
+                      isMulti
+                      getOptionLabel={(category: Category) => category.name}
+                      getOptionValue={(category: Category) =>
+                        String(category.id)
+                      }
+                    ></Select>
+                  )}
+                />
+                {errors.categories && (
+                  <div className="invalid-feedback d-block">
+                  Campo obrigatório
+                </div>
+                )
+
+                }
               </div>
-
-
 
               <div className="product-crud-margin-bottom-30">
                 <input
