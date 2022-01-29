@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+import Pagination from 'components/Pagination';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -48,6 +49,7 @@ const List = () => {
           </div>
         ))}
       </div>
+      <Pagination />
     </div>
   );
 };
