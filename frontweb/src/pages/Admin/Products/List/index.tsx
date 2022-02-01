@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
+import ProductFilter from 'components/ProductFilter';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
@@ -51,8 +52,7 @@ const List = () => {
             Adicionar
           </button>
         </Link>
-
-        <div className="base-card product-filter-container">Search bar</div>
+        <ProductFilter />
       </div>
       <div className="row">
         {page?.content.map((product) => (
