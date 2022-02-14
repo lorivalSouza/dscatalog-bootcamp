@@ -7,18 +7,22 @@ import { requestBackend } from 'util/requests';
 
 import './styles.css';
 
-type ProductFilterData = {
+export type ProductFilterData = {
   name: string;
   category: Category | null;
 };
 
-const ProductFilter = () => {
+type Props = {
+  oSubimitFilter: (data: ProductFilterData) => void;
+};
+
+const ProductFilter = ({ oSubimitFilter }: Props) => {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
   const { register, handleSubmit, setValue, getValues, control } =
     useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
-    console.log('Enviou: ', formData);
+    oSubimitFilter(formData);
   };
 
   const handleFormClear = () => {
@@ -30,9 +34,9 @@ const ProductFilter = () => {
     setValue('category', value);
     const obj: ProductFilterData = {
       name: getValues('name'),
-      category: getValues('category')
+      category: getValues('category'),
     };
-    console.log('Enviou: ', obj);
+    oSubimitFilter(obj);
   };
 
   useEffect(() => {
