@@ -37,9 +37,9 @@ public class ProductResource {
 		
 		
 		
-		Page<ProductDTO> list = service.findAllPaged(name.trim(), categoryId, pageable);
+		Page<ProductDTO> page = service.findAllPaged(name.trim(), categoryId, pageable);
 		
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(page);
 		
 	}
 	
