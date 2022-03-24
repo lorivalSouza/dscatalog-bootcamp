@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ButtonIcon from "..";
 
-test('ButtonIcon should render buttoun with given text', () => {
+test('ButtonIcon should render button with given text', () => {
 //ARRANGE
 //ACTION
 //ASSERT
