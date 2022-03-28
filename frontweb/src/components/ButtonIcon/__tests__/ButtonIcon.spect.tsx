@@ -18,6 +18,7 @@ render(
 
 //ASSERT
 expect(screen.getByText(text)).toBeInTheDocument();
+expect(screen.getByTestId("arrow")).toBeInTheDocument;
 
 
 });
