@@ -2,8 +2,19 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import Catalog from "..";
 import history from "util/history";
+import { server } from "./fixtures";
 
-describe('Pagination tests', () => {
+beforeAll(() =>       
+        server.listen()
+   );
+
+    afterEach(() =>     
+        server.resetHandlers
+    );
+
+    afterAll(() =>  
+        server.close()
+   );  
 
 
     test('Catalog should render with products', async () => {
@@ -21,14 +32,15 @@ describe('Pagination tests', () => {
             </Router>
         )
 
-        //screen.debug();
+        screen.debug();
 
         //ASSERT
         expect(screen.getByText(text)).toBeInTheDocument();
 
-        await waitFor( () => {
-            expect(screen.getByText("The Lord of the Rings")).toBeInTheDocument;
+        await waitFor(() => {
+            expect(screen.getByText("PC Gamer Turbo")).toBeInTheDocument;
         });
-    });
 
-});
+        screen.debug();
+
+    });
