@@ -4,43 +4,43 @@ import Catalog from "..";
 import history from "util/history";
 import { server } from "./fixtures";
 
-beforeAll(() =>       
-        server.listen()
-   );
+beforeAll(() =>
+    server.listen()
+);
 
-    afterEach(() =>     
-        server.resetHandlers
-    );
+afterEach(() =>
+    server.resetHandlers
+);
 
-    afterAll(() =>  
-        server.close()
-   );  
+afterAll(() =>
+    server.close()
+);
 
 
-    test('Catalog should render with products', async () => {
-        //ARRANGE
-        //ACTION
-        //ASSERT
+test('Catalog should render with products', async () => {
+    //ARRANGE
+    //ACTION
+    //ASSERT
 
-        //ARRANGE to Text = FAZER LOGIN
-        const text = "Catálago de produtos";
+    //ARRANGE to Text = FAZER LOGIN
+    const text = "Catálago de produtos";
 
-        //ACTION
-        render(
-            <Router history={history}>
-                <Catalog />
-            </Router>
-        )
+    //ACTION
+    render(
+        <Router history={history}>
+            <Catalog />
+        </Router>
+    )
 
-        screen.debug();
+    screen.debug();
 
-        //ASSERT
-        expect(screen.getByText(text)).toBeInTheDocument();
+    //ASSERT
+    expect(screen.getByText(text)).toBeInTheDocument();
 
-        await waitFor(() => {
-            expect(screen.getByText("PC Gamer Turbo")).toBeInTheDocument;
-        });
-
-        screen.debug();
-
+    await waitFor(() => {
+        expect(screen.getByText("PC Gamer Turbo")).toBeInTheDocument;
     });
+
+    screen.debug();
+
+});
