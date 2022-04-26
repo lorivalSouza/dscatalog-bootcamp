@@ -96,6 +96,7 @@ const Form = () => {
                   }`}
                   placeholder="Nome do produto"
                   name="name"
+                  data-testid="name"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.name?.message}
@@ -103,6 +104,7 @@ const Form = () => {
               </div>
 
               <div className="product-crud-margin-bottom-30">
+                <label htmlFor="categories" className='d-none'>Categorias</label>
                 <Controller
                   name="categories"
                   rules={{ required: true }}
@@ -117,6 +119,7 @@ const Form = () => {
                       getOptionValue={(category: Category) =>
                         String(category.id)
                       }
+                      inputId='categories'
                     ></Select>
                   )}
                 />
@@ -141,6 +144,7 @@ const Form = () => {
                       disableGroupSeparators={true}
                       value={field.value}
                       onValueChange={field.onChange}
+                      data-testid="price"
                     />
                   )}
                 />
@@ -164,6 +168,7 @@ const Form = () => {
                   }`}
                   placeholder="URL da imagem do produto"
                   name="imgURL"
+                  data-testid="imgURL"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.imgURL?.message}
@@ -181,6 +186,7 @@ const Form = () => {
                   }`}
                   placeholder="Descrição do produto"
                   name="description"
+                  data-testid="description"
                   rows={10}
                 />
                 <div className="invalid-feedback d-block">
