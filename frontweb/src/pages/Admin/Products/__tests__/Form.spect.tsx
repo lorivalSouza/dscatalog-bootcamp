@@ -102,10 +102,56 @@ describe('Product form create tests', () => {
             const messages = screen.getAllByText('Campo obrigatório');
             expect(messages).toHaveLength(5);
 
-        });
-        
+        });   
+    
+    });
+
+    test('Should show 0 validation errors when submit form filling correctly', async () => {
+        //ARRANGE
+        //ACTION
+        //ASSERT
+    
+        //ARRANGE to Text = FAZER LOGIN
+        const text = "Catálago de produtos";
+    
+        //ACTION
+        render(
+            <Router history={history}>
+                <Form />
+            </Router>
+        );
+
+        const submitButton = screen.getByRole('button', {name: /salva/i});
+        userEvent.click(submitButton);
+
 
         
+
+        await waitFor(() => {
+            const messages = screen.getAllByText('Campo obrigatório');
+            expect(messages).toHaveLength(5);
+
+        });   
+
+        const nameInput =  screen.getByTestId("name");
+            const priceInput =  screen.getByTestId("price");
+            const imgURLInput =  screen.getByTestId("imgURL");
+            const descriptionInput =  screen.getByTestId("description");
+
+            const CategoriesInput = screen.getByLabelText("Categorias");
+
+            await selectEvent.select(CategoriesInput, ['Eletrônicos']);
+            userEvent.type(nameInput, 'Computador');
+            userEvent.type(priceInput, '5124.25');
+            userEvent.type(imgURLInput, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FCommons%3AQuality_images&psig=AOvVaw1m4nRKZ-wWOhRuwCXg4J6i&ust=1650459275212000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjxnYqWoPcCFQAAAAAdAAAAABAD');
+            userEvent.type(descriptionInput, 'ComputadorComputadorComputadorComputadorComputadorComputadorComputadorComputadorComputadorComputador');
+
+
+            await waitFor(() => {
+                const messages = screen.queryAllByText('Campo obrigatório');
+                expect(messages).toHaveLength(0);
+    
+            });
     
     });
 });
