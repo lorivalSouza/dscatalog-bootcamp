@@ -76,6 +76,38 @@ describe('Product form create tests', () => {
         
     
     });
+
+    test('Should show five validation errors when just submit form without filling', async () => {
+        //ARRANGE
+        //ACTION
+        //ASSERT
+    
+        //ARRANGE to Text = FAZER LOGIN
+        const text = "Catálago de produtos";
+    
+        //ACTION
+        render(
+            <Router history={history}>
+                <Form />
+            </Router>
+        );
+
+        const submitButton = screen.getByRole('button', {name: /salva/i});
+        userEvent.click(submitButton);
+
+
+        
+
+        await waitFor(() => {
+            const messages = screen.getAllByText('Campo obrigatório');
+            expect(messages).toHaveLength(5);
+
+        });
+        
+
+        
+    
+    });
 });
 
 
